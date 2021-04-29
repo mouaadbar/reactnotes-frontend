@@ -9,7 +9,7 @@ const getAll = () =>{
 }
 
 const create = data => {
-   return httpClient.post("addNotes", data)
+   return httpClient.post("addNote", data)
 }
 
 export default {getAll, create};

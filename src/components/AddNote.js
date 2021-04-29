@@ -8,7 +8,7 @@ const AddNote = () => {
     const [title, setTitle] = useState ('')
     const [body, setBody] = useState ('')
     const [category, setCategory] = useState ('');
-    const history = useHistory()
+
 
 
     const saveNote =(e) =>{
@@ -18,7 +18,7 @@ const AddNote = () => {
         NoteService.create(note)
         .then(response=>{
            console.log("Note added successfully", response.data)
-        history.push("api/")        })
+         })
         .catch(error=>{
             console.log("somthing goes wrong", error)
         })
