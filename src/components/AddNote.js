@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
-import NotesService from "../services/NotesService";
+import NotesService from "../services/NoteService";
 
 const AddNote = () => {
     const[title, setTitle] = useState('');
