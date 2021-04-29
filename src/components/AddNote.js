@@ -18,7 +18,7 @@ const AddNote = () => {
         NoteService.create(note)
         .then(response=>{
            console.log("Note added successfully", response.data)
-        history.push("/")        })
+        history.push("api/")        })
         .catch(error=>{
             console.log("somthing goes wrong", error)
         })
