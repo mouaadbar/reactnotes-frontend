@@ -1,76 +1,74 @@
-import {useState} from 'react'
-import { useHistory } from 'react-router'
-import NoteService from '../services/NoteService'
-
+import { useState } from "react";
+import { useHistory } from "react-router";
+import NotesService from "../services/NotesService";
 
 const AddNote = () => {
-
-    const [title, setTitle] = useState ('')
-    const [body, setBody] = useState ('')
-    const [category, setCategory] = useState ('');
+    const[title, setTitle] = useState('');
+    const[body, setBody] = useState('');
+    const[category, setCategory] = useState('programming');
     const history = useHistory();
 
-
-
-    const saveNote =(e) =>{
+    const saveNote = (e) => {
         e.preventDefault();
         const note = {title, body, category};
-        console.log('printion note', note)
-        NoteService.create(note)
-        .then(response=>{
-           console.log("Note added successfully", response.data)
-           history.push("/")
-         })
-        .catch(error=>{
-            console.log("somthing goes wrong", error)
-        })
-        
+        NotesService.create(note)
+            .then(response => {
+                console.log("Note added successfully", response.data);
+                history.push("/");
+            })
+            .catch(error => {
+                console.log('something went wroing', error);
+            })
     }
+
     return (
         <div className="create">
             <form>
+
                 <div className="form-group">
-                    <label htmlFor="title">Note Title<sup>*</sup></label>
+
+                    <label htmlFor="title">Note Title: <sup>*</sup></label>
                     <input 
-                    type ="text"
-                    className="form-control"
-                    id="title" 
-                    value = {title}
-                    onChange={(e)=>setTitle(e.target.value)}
-                    ></input>
+                        type="text" 
+                        className="form-control"
+                        id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
 
-                <div className="form-group">
-                    <label htmlFor="body">Note Description<sup>*</sup></label>
-                    <textarea
-                    className="form-control"
-                    id="body" 
-                    value={body}
-                    onChange = {(e)=>setBody(e.target.value)}
-                    ></textarea>
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="category">Note Category</label>
-                    <select 
-                    id="category"
-                    className="form-control"
-                    value={category}
-                    onChange={(e)=> setCategory(e.target.value)}>
-                    <option value =""></option>
-                    <option value ="working">Working</option>
-                    <option value ="meeting">Meeting</option>
-                    <option value ="vacation">Vacation</option>
-                    <option value ="blogging">Blogging</option>
-                   
-                  
+
+                    <label htmlFor="body">Note Description: <sup>*</sup></label>
+                    <textarea 
+                        id="body"
+                        className="form-control"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}>
+                    </textarea>
+
+                </div>
+                <div className="form-group">
+
+                    <label htmlFor="category">Note Category:</label>
+                    <select
+                        id="category"
+                        className="form-control"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}>
+                        <option value="programming">Programming</option>
+                        <option value="vacation">Vacation</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="blogging">Blogging</option>
                     </select>
+
                 </div>
                 <div className="text-center">
-                <button onClick={(e)=>saveNote(e)}>Add Note</button>
-                </div>
+                    <button onClick={(e) => saveNote(e)}>Add note</button>
                 </div>
             </form>
         </div>
-    )
+    );
 }
+ 
 export default AddNote;
